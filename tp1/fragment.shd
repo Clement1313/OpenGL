@@ -13,14 +13,39 @@ in vec3 in_color;
 
 void main() {
 
+    // 4. TEXTURES =====================================================================
+
+	// Q4 spot
+	vec2 uv_coords = in_color.xy;
+	float lighting = in_color.z;
+	vec4 tex_color = texture(texture_sampler, uv_coords);
+    output_color = tex_color * lighting;
+    vec4 spot_color = texture(lighting_sampler, uv_coords);
+    output_color = tex_color * 1.5 * spot_color;
+
+	// Q3 texture avec lumière
+	// vec2 uv_coords = in_color.xy;
+	// float lighting = in_color.z;
+	// vec4 tex_color = texture(texture_sampler, uv_coords);
+    // output_color = tex_color * lighting;
+
+	// Q2 texture sans lumière
+    // output_color = texture(texture_sampler, in_color.xy);
+
+    // Q1 rouge et vert
+    // output_color = vec4(in_color, 1.0);
+
+
+
     // 3. NORMAL =======================================================================
 
     // Q2 lisser
-    output_color = vec4(in_color, 1.0);
-
+    // output_color = vec4(in_color, 1.0);
 
     // Q1 Bleu lumière
     // output_color = vec4(in_color, 1.0);
+
+
 
 	// 2. COLOR ========================================================================
     
