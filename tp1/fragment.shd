@@ -6,6 +6,25 @@ uniform sampler2D normalmap_sampler;
 
 layout(location=0) out vec4 output_color;
 
+
+in vec3 in_color;
+// flat in vec3 in_color;
+
+
 void main() {
 
+    // 2. NORMAL =======================================================================
+
+
+	// 2. COLOR ========================================================================
+    
+	// Q3 Interpolation
+    // Comme Q2 mais rajouter falt avant l'instanciation de in_color (l11)
+    // output_color = vec4(in_color, 1.0);
+
+	// Q2 VBO COLOR
+    // output_color = vec4(in_color, 1.0);
+
+    // Q1 jaune
+    // output_color = vec4(1.0, 1.0, 0.0, 1.0);
 }
