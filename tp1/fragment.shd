@@ -13,8 +13,14 @@ in vec3 in_color;
 
 void main() {
 
-    // 2. NORMAL =======================================================================
+    // 3. NORMAL =======================================================================
 
+    // Q2 lisser
+    output_color = vec4(in_color, 1.0);
+
+
+    // Q1 Bleu lumière
+    // output_color = vec4(in_color, 1.0);
 
 	// 2. COLOR ========================================================================
     
@@ -26,5 +32,5 @@ void main() {
     // output_color = vec4(in_color, 1.0);
 
     // Q1 jaune
-    // output_color = vec4(1.0, 1.0, 0.0, 1.0);
+    // output_color = vec4(1.0, 1.0, 0.0, 1.0); // RGB
 }
