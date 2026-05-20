@@ -1,8 +1,8 @@
 #ifndef MATRIX4_HH
 #define MATRIX4_HH
 
-#include <GL/freeglut.h>
 #include <GL/glew.h>
+#include <GL/freeglut.h>
 #include <iostream>
 
 using namespace std;
