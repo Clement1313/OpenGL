@@ -60,9 +60,29 @@ void matrix4::operator*=(const matrix4& rhs)
     }
 }
 
+matrix4 matrix4::operator*(const matrix4& rhs)
+{
+    GLfloat result[4][4] = { { 0.0f, 0.0f, 0.0f, 0.0f },
+                             { 0.0f, 0.0f, 0.0f, 0.0f },
+                             { 0.0f, 0.0f, 0.0f, 0.0f },
+                             { 0.0f, 0.0f, 0.0f, 0.0f } };
+
+    for (int i = 0; i < 4; ++i)
+    {
+        for (int j = 0; j < 4; ++j)
+        {
+            for (int k = 0; k < 4; ++k)
+            {
+                result[i][j] += mat[i][k] * rhs.mat[k][j];
+            }
+        }
+    }
+
+    return result;
+}
+
 ostream& mygl::operator<<(std::ostream& out, const mygl::matrix4& m)
 {
-
     for (int i = 0; i < 4; ++i)
     {
         for (int j = 0; j < 4; ++j)
