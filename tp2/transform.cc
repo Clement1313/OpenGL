@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 #include "matrix4.hh"
 
@@ -11,6 +12,15 @@ using namespace std;
 
 namespace mygl
 {
+
+#define TEST_OPENGL_ERROR()                                                    \
+    do                                                                         \
+    {                                                                          \
+        GLenum err = glGetError();                                             \
+        if (err != GL_NO_ERROR)                                                \
+            std::cerr << "OpenGL ERROR!" << __LINE__ << std::endl;             \
+    } while (0)
+
     matrix4 look_at(const GLfloat& eyeX, const GLfloat& eyeY,
                     const GLfloat& eyeZ, const GLfloat& centerX,
                     const GLfloat& centerY, const GLfloat& centerZ,
@@ -56,32 +66,10 @@ namespace mygl
                                 (top + bottom) / (top - bottom), 0.0f },
                               { 0.0f, 0.0f,
                                 -(z_far + z_near) / (z_far - z_near),
-                                -(2 * z_far * z_near) / (z_far - z_near) } };
+                                -(2 * z_far * z_near) / (z_far - z_near) },
+                              { 0.0f, 0.0f, -1.0f, 0.0f } };
 
-        matrix4 res = matrix4(mat);
-        return res;
-    }
-
-    bool init_glut(int& argc, char* argv[])
-    {
-        glutInit(&argc, argv);
-        glutInitContextVersion(4, 5);
-        glutInitContextProfile(GLUT_CORE_PROFILE);
-        glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-        glutInitWindowSize(1024, 1024);
-        glutInitWindowPosition(10, 10);
-        glutCreateWindow("test-OpenGL");
-
-        return true;
-    }
-
-    bool init_glew()
-    {
-        return glewInit() == GLEW_OK;
-    }
-
-    bool init_gl() {
-        return true; // J'ai pas compris...
+        return matrix4(mat);
     }
 
 } // namespace mygl

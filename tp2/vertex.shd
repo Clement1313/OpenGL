@@ -1,0 +1,166 @@
+#version 450
+
+in vec3 position;
+in vec3 normalFlat;
+in vec3 normalSmooth;
+in vec3 color;
+in vec2 uv;
+
+out vec3 in_color;
+out vec3 frag_pos;
+out vec3 frag_normal;
+out vec2 frag_uv;
+out float frag_dist;
+// flat out vec3 in_color;
+
+vec3 light_color = vec3(1.0, 1.0, 1.0);
+vec3 light_position = vec3(1.0, 1.0, 5.0);
+
+uniform mat4 model_view_matrix;
+uniform mat4 projection_matrix;
+
+void main() {
+
+    // 5. Effets ======================================================================
+	
+	// Q8 normalmap
+	gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	frag_pos = position;
+	frag_normal = normalSmooth;
+	frag_uv = uv;
+	in_color = color;
+	vec4 eye_pos = model_view_matrix * vec4(position, 1.0);
+	float dist = length(eye_pos.xyz);
+	frag_dist = dist;
+
+	// Q7 dégradé
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// vec3 lit_color = clamp(color * lighting, 0.0, 1.0);
+	// in_color = lit_color;
+	// vec4 eye_pos = model_view_matrix * vec4(position, 1.0);
+	// float dist = length(eye_pos.xyz);
+	// frag_dist = dist;
+
+	// Q6 terne
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// vec3 lit_color = clamp(color * lighting, 0.0, 1.0);
+	// in_color = lit_color;
+	// vec4 eye_pos = model_view_matrix * vec4(position, 1.0);
+	// float dist = length(eye_pos.xyz);
+	// frag_dist = dist;
+
+	// Q5 damier
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// vec3 lit_color = clamp(color * lighting, 0.0, 1.0);
+	// in_color = lit_color;
+	// vec4 eye_pos = model_view_matrix * vec4(position, 1.0);
+	// float dist = length(eye_pos.xyz);
+	// frag_dist = dist;
+
+
+	// Q4 fog
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// vec3 lit_color = clamp(color * lighting, 0.0, 1.0);
+	// in_color = lit_color;
+	// vec4 eye_pos = model_view_matrix * vec4(position, 1.0);
+	// float dist = length(eye_pos.xyz);
+	// frag_dist = dist;
+
+    // Q3 vert profondeur
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// in_color = clamp(color * lighting, 0.0, 1.0);
+
+	// Q2 nigth vision
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// in_color = clamp(color * lighting, 0.0, 1.0);
+
+    // Q1 niveau de gris
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position - position);
+	// vec3 normal = normalize(normalSmooth);
+	// float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+	// in_color = vec3(lighting);
+
+
+    // 4. TEXTURES =====================================================================
+
+	// Q4 spot
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position-position);
+	// vec3 normal = normalize(normalSmooth); 
+	// float lighting = clamp(dot(normal, light_dir), 0, 1);
+	// in_color = vec3(uv, 0.0);
+
+	// Q3 texture avec lumière
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position-position);
+	// vec3 normal = normalize(normalSmooth); 
+	// float lighting = clamp(dot(normal, light_dir), 0, 1);
+	// in_color = vec3(uv, lighting);
+
+	// Q2 texture sans lumière
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position-position);
+	// vec3 normal = normalize(normalSmooth); 
+	// in_color = vec3(uv, 0.0);
+
+    // Q1 rouge et vert
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position-position);
+	// vec3 normal = normalize(normalSmooth); 
+	// in_color = vec3(uv, 0.0);
+
+
+
+
+	// 3. NORMAL =======================================================================
+	
+	// Q2 lisser
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position-position);
+	// vec3 normal = normalize(normalSmooth); 
+	// in_color = clamp((dot(normal, light_dir ))*vec3(0.0, 0.0, 1.0), 0, 1);
+
+	// Q1 Bleu lumière
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 light_dir = normalize(light_position-position);
+	// vec3 normal = normalize(normalFlat); 
+	// in_color = clamp((dot(normal, light_dir ))*vec3(0.0, 0.0, 1.0), 0, 1);
+
+
+
+	// 2. COLOR ========================================================================
+	 
+	// Q3 Interpolation
+	// Comme Q2 mais rajouter falt avant l'instanciation de in_color (l11)
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// in_color = color;
+
+	// Q2 VBO color
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// in_color = color;
+
+	// Q1 jaune
+	// gl_Position = projection_matrix * model_view_matrix * vec4(position, 1.0);
+	// vec3 normal = normalize(normalFlat); 
+	// vec3 light_dir = normalize(light_position-position);
+	// in_color = clamp((dot(normal, light_dir ))*color, 0, 1);
+}

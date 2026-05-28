@@ -18,10 +18,6 @@ namespace mygl
                     const GLfloat& upX, const GLfloat& upY, const GLfloat& upZ);
     matrix4 glFrustum(GLfloat& left, GLfloat& right, GLfloat& bottom,
                       GLfloat& top, GLfloat& z_near, GLfloat& z_far);
-    bool init_glut(int &argc, char* argv[]);
-    bool init_glew();
-    bool init_gl();
-
     struct vec3
     {
         GLfloat x;
