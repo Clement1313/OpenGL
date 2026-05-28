@@ -49,6 +49,39 @@ namespace mygl
 
     matrix4 glFrustum(GLfloat& left, GLfloat& right, GLfloat& bottom,
                       GLfloat& top, GLfloat& z_near, GLfloat& z_far)
-    {}
+    {
+        GLfloat mat[4][4] = { { (2 * z_near) / (left - right), 0.0f,
+                                (right + left) / (right - left), 0.0f },
+                              { 0.0f, (2 * z_near) / (top - bottom),
+                                (top + bottom) / (top - bottom), 0.0f },
+                              { 0.0f, 0.0f,
+                                -(z_far + z_near) / (z_far - z_near),
+                                -(2 * z_far * z_near) / (z_far - z_near) } };
+
+        matrix4 res = matrix4(mat);
+        return res;
+    }
+
+    bool init_glut(int& argc, char* argv[])
+    {
+        glutInit(&argc, argv);
+        glutInitContextVersion(4, 5);
+        glutInitContextProfile(GLUT_CORE_PROFILE);
+        glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+        glutInitWindowSize(1024, 1024);
+        glutInitWindowPosition(10, 10);
+        glutCreateWindow("test-OpenGL");
+
+        return true;
+    }
+
+    bool init_glew()
+    {
+        return glewInit() == GLEW_OK;
+    }
+
+    bool init_gl() {
+        return true; // J'ai pas compris...
+    }
 
 } // namespace mygl

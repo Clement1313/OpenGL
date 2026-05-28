@@ -1,8 +1,8 @@
 #ifndef TRANSFORM_HH
 #define TRANSFORM_HH
 
-#include <GL/freeglut.h>
 #include <GL/glew.h>
+#include <GL/freeglut.h>
 #include <iostream>
 
 #include "matrix4.hh"
@@ -16,9 +16,11 @@ namespace mygl
                     const GLfloat& eyeZ, const GLfloat& centerX,
                     const GLfloat& centerY, const GLfloat& centerZ,
                     const GLfloat& upX, const GLfloat& upY, const GLfloat& upZ);
-
     matrix4 glFrustum(GLfloat& left, GLfloat& right, GLfloat& bottom,
                       GLfloat& top, GLfloat& z_near, GLfloat& z_far);
+    bool init_glut(int &argc, char* argv[]);
+    bool init_glew();
+    bool init_gl();
 
     struct vec3
     {

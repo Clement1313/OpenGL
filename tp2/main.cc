@@ -1,9 +1,23 @@
 #include "matrix4.hh"
+#include "program.hh"
 #include "transform.hh"
 
-using namespace std;
+#include <GL/freeglut.h>
+#include <GL/glew.h>
 
-int main(void) {
-    cout << "hello";
+using namespace std;
+using namespace mygl;
+
+int main(int argc, char* argv[]) {
+    init_glut(argc, argv);
+    init_glew();
+    init_gl();
+
+    // init_shaders();
+    // init_object();
+    // init_POV ( ) ;
+    
+    glutMainLoop();
+
     return 0;
 }
